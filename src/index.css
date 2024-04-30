@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 2.5s linear infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos generales del scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* Ancho del scrollbar */
+}
+
+/* Estilo del track (la parte por donde se desliza el thumb) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo del track */
+}
+
+/* Estilo del thumb (la parte que se mueve del scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: gray; /* Color de fondo del thumb */
+}
+
+/* Estilo del thumb al pasar el ratón por encima */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color de fondo del thumb al pasar el ratón por encima */
+}
+
+/* Estilos para Firefox */
+* {
+  scrollbar-width: thin; /* 'auto' o 'thin' */
+  scrollbar-color: black #f1f1f1; /* color del thumb y color del track */
+}
+
+
+*{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
