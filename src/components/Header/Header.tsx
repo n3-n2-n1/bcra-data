@@ -14,7 +14,7 @@ export function Header() {
       </span>
         </div>
         {/* Estado del servidor */}
-        <div className="flex items-center space-x-2 mr-4">
+        <div className="flex items-center space-x-2 mr-4 sm:hidden">
           <div className="w-3 h-3 bg-green-500 rounded-full animate-blink"></div>
           <span className="text-sm hidden lg:block">Estado del servidor</span>
         </div>
