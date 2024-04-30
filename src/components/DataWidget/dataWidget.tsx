@@ -6,12 +6,13 @@ export const EconomicDataWidget = () => {
   const [filter, setFilter] = useState("all");
   const [filteredData, setFilteredData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [orderByDate, setOrderByDate] = useState(false);
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const local = import.meta.env.VITE_API_LOCAL;
 
   useEffect(() => {
-    fetch('https://bcra-back.vercel.app/api/data')
+    fetch("https://bcra-back.vercel.app/api/data")
       .then((response) => response.json())
       .then((data) => {
         setData(data.results); // Guarda los datos recibidos en el estado
@@ -22,6 +23,19 @@ export const EconomicDataWidget = () => {
         setError(error.message || "An error occurred");
       });
   }, []);
+
+  useEffect(() => {
+    let sortedData = [...data];
+    if (orderByDate) {
+      sortedData = sortByDate(sortedData);
+    }
+    // Luego aplica el filtro actual si es necesario
+    const newFilteredData = sortedData.filter(
+      (item) =>
+        filter === "all" || item.descripcion.toLowerCase().includes(filter)
+    );
+    setFilteredData(newFilteredData);
+  }, [data, filter, orderByDate]);
 
   const toggleItem = (index) => {
     if (selectedItem === index) {
@@ -85,6 +99,16 @@ export const EconomicDataWidget = () => {
     );
   }
 
+  const sortByDate = (data) => {
+    return data.sort((a, b) => {
+      // Suponiendo que `fecha` es una cadena en formato 'dd/mm/yyyy'
+      // Convierte las fechas a objetos de fecha JavaScript para comparar
+      const dateA = new Date(a.fecha.split("/").reverse().join("-"));
+      const dateB = new Date(b.fecha.split("/").reverse().join("-"));
+      return dateA - dateB; // Ordena de más antiguo a más reciente
+    });
+  };
+
   const cardColors = [
     "bg-red-500",
     "bg-blue-500",
@@ -95,23 +119,27 @@ export const EconomicDataWidget = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
-    {importantData.map((item, index) => (
-      <div
-        key={index}
-        className={`${
-          cardColors[index % cardColors[0].length]
-        } shadow-lg rounded-lg p-4 mb-2 text-white flex flex-col justify-between`}
-        style={{ minHeight: '10rem' }} // Establece una altura mínima para las tarjetas
-      >
-        <h3 className="text-xl font-semibold select-none">{item.descripcion}</h3>
-        <div> {/* Contenedor para el valor y la fecha */}
-          <p className="font-bold text-3xl pt-4">{item.valor}</p>
-          <p>Valor al {item.fecha}</p>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
+        {importantData.map((item, index) => (
+          <div
+            key={index}
+            className={`${
+              cardColors[index % cardColors[0].length]
+            } shadow-lg rounded-lg p-4 mb-2 text-white flex flex-col justify-between`}
+            style={{ minHeight: "10rem" }} // Establece una altura mínima para las tarjetas
+          >
+            <h3 className="text-xl font-semibold select-none">
+              {item.descripcion}
+            </h3>
+            <div>
+              {" "}
+              {/* Contenedor para el valor y la fecha */}
+              <p className="font-bold text-3xl pt-4">{item.valor}</p>
+              <p>Valor al {item.fecha}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
       <div className="p-4 mb-4 rounded-full flex gap-3 sm:gap-12">
         <div className="w-full">
           <select
@@ -126,9 +154,18 @@ export const EconomicDataWidget = () => {
             <option value="inflación">Inflación</option>
           </select>
         </div>
-        <button className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus:outline-none rounded-full px-2 py-1 shadow-lg">
-          <span className="text-white font-medium">Actualizar</span>
-        </button>
+        <div className="flex items-center space-x-2">
+          <label htmlFor="orderByDate" className="text-sm text-gray-700">
+            Ordenar por fecha:
+          </label>
+          <input
+            id="orderByDate"
+            type="checkbox"
+            checked={orderByDate}
+            onChange={(e) => setOrderByDate(e.target.checked)}
+            className="cursor-pointer"
+          />
+        </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
         {filteredData.map((item, index) => (
