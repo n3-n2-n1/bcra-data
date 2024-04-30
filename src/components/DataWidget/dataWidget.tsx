@@ -105,7 +105,7 @@ export const EconomicDataWidget = () => {
       // Convierte las fechas a objetos de fecha JavaScript para comparar
       const dateA = new Date(a.fecha.split("/").reverse().join("-"));
       const dateB = new Date(b.fecha.split("/").reverse().join("-"));
-      return dateA - dateB; // Ordena de más antiguo a más reciente
+      return dateB - dateA; // Ordena de más antiguo a más reciente
     });
   };
 
@@ -155,17 +155,15 @@ export const EconomicDataWidget = () => {
           </select>
         </div>
         <div className="flex items-center space-x-2">
-          <label htmlFor="orderByDate" className="text-sm text-gray-700">
-            Ordenar por fecha:
-          </label>
-          <input
-            id="orderByDate"
-            type="checkbox"
-            checked={orderByDate}
-            onChange={(e) => setOrderByDate(e.target.checked)}
-            className="cursor-pointer"
-          />
-        </div>
+      <label htmlFor="orderByDate" className="text-sm text-gray-700 hidden sm:block">Ordenar por fecha:</label>
+      <input
+        id="orderByDate"
+        type="checkbox"
+        checked={orderByDate}
+        onChange={(e) => setOrderByDate(e.target.checked)}
+        className="cursor-pointer hidden sm:block"
+      />
+    </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
         {filteredData.map((item, index) => (
