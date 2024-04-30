@@ -18,7 +18,7 @@ const App = () => {
   // Simula una llamada a la API
   const fetchItems = async () => {
     // Simula un retraso para demostrar el loader
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     return [{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }]; // Datos simulados
   };
   return (
