@@ -11,7 +11,7 @@ export const EconomicDataWidget = () => {
   const local = import.meta.env.VITE_API_LOCAL;
 
   useEffect(() => {
-    fetch(`/api/cors-proxy`)
+    fetch('https://bcra-back-8qxlb3j53-n3n2n1s-projects.vercel.app/api/data')
       .then((response) => response.json())
       .then((data) => {
         setData(data.results); // Guarda los datos recibidos en el estado
