@@ -182,19 +182,15 @@ export const EconomicDataWidget = () => {
                 key={index}
                 className={`bg-white shadow-md rounded-lg p-4 border-l-4 ${getCategoryColor(
                   item.descripcion
-                )} hover:shadow-lg transition-shadow duration-300 relative select-none`}
+                )} transition-shadow duration-300 relative select-none ${
+                  selectedItem === index ? "shadow-lg" : "" // Agrega shadow en caso de estar seleccionado
+                }`}
+                onClick={() => toggleItem(index)} // Manejador para toques y clics
               >
                 <h3 className="text-xl font-semibold mb-2 text-black select-none">
                   {item.descripcion}
                 </h3>
-                <div
-                  onClick={() => toggleItem(index)}
-                  onMouseEnter={() => toggleItem(index)}
-                  onMouseLeave={() => setSelectedItem(null)}
-                >
-                  <p className="text-black font-bold text-2xl">{item.valor}</p>
-                </div>
-
+                <p className="text-black font-bold text-2xl">{item.valor}</p>
                 <p className="text-gray-500 pt-4">Valor al {item.fecha}</p>
                 {selectedItem === index && (
                   <div className="absolute top-0 left-0 right-0 bottom-0 bg-white bg-opacity-90 flex items-center justify-center p-4 select-none">
