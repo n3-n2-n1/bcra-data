@@ -89,7 +89,7 @@ export const EconomicDataWidget = () => {
     if (descripcion.toLowerCase().includes("deposito"))
       return "Un depósito es una suma de dinero guardada en una cuenta bancaria.";
     if (descripcion.toLowerCase().includes("cer"))
-      return "El Coeficiente de Estabilización de Referencia (CER) tiene como objetivo reflejar la inflación minorista, y básicamente se computa a partir de la tasa de variación promedio-diario del Índice de Precios al Consumidor (IPC) correspondiente al mes previo.";
+      return "El Coeficiente de Estabilización de Referencia (CER) refleja la inflación minorista, a partir de la tasa de variación promedio-diario del Índice de Precios al Consumidor (IPC) mes previo.";
     if (descripcion.toLowerCase().includes("TM20"))
       return "El promedio que pagan los bancos por depósitos a plazo de $ 20 millones o más.";
     if (descripcion.toLowerCase().includes("indice"))
@@ -155,7 +155,7 @@ export const EconomicDataWidget = () => {
               </div>
             ))}
           </div>
-          <div className="flex justify-between mb-4 items-center">
+          <div className="flex justify-between mb-4 items-center py-4">
             {/* Selector de filtros y toggle juntos para responsividad */}
             <div className="flex flex-1 items-center space-x-2">
               <div className="w-full">
