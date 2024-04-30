@@ -11,7 +11,7 @@ export const EconomicDataWidget = () => {
   const local = import.meta.env.VITE_API_LOCAL;
 
   useEffect(() => {
-    fetch(`${apiUrl}/estadisticas/v1/principalesvariables`)
+    fetch(`/api/cors-proxy`)
       .then((response) => response.json())
       .then((data) => {
         setData(data.results); // Guarda los datos recibidos en el estado
