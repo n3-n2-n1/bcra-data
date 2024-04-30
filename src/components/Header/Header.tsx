@@ -9,7 +9,9 @@ export function Header() {
           <div className="w-12 h-12 bg-gradient-to-tr from-violet-600 to-green-600 rounded-full flex justify-center items-center overflow-hidden">
             <img src={bcraLogo} alt="BCRA Logo" className="w-full h-full object-cover" />
           </div>
-          <span className="hidden md:block text-xl font-semibold text-[#1e1e1e]">Banco Central de la República Argentina - Estadísticas</span>
+          <span className="text-base sm:text-sm md:text-xl font-semibold text-[#1e1e1e] truncate">
+        Banco Central de la República Argentina - Estadísticas
+      </span>
         </div>
         {/* Estado del servidor */}
         <div className="flex items-center space-x-2 mr-4">
