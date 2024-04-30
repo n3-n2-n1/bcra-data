@@ -95,20 +95,23 @@ export const EconomicDataWidget = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
-        {importantData.map((item, index) => (
-          <div
-            key={index}
-            className={`${
-              cardColors[index % cardColors[0].length]
-            } shadow-lg rounded-lg p-4 mb-2 text-white`}
-          >
-            <h3 className="text-xl font-semibold">{item.descripcion}</h3>
-            <p className="font-bold text-3xl pt-4">{item.valor}</p>
-            <p>Valor al {item.fecha}</p>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
+    {importantData.map((item, index) => (
+      <div
+        key={index}
+        className={`${
+          cardColors[index % cardColors[0].length]
+        } shadow-lg rounded-lg p-4 mb-2 text-white flex flex-col justify-between`}
+        style={{ minHeight: '10rem' }} // Establece una altura mínima para las tarjetas
+      >
+        <h3 className="text-xl font-semibold select-none">{item.descripcion}</h3>
+        <div> {/* Contenedor para el valor y la fecha */}
+          <p className="font-bold text-3xl pt-4">{item.valor}</p>
+          <p>Valor al {item.fecha}</p>
+        </div>
       </div>
+    ))}
+  </div>
       <div className="p-4 mb-4 rounded-full flex gap-3 sm:gap-12">
         <div className="w-full">
           <select
@@ -133,18 +136,18 @@ export const EconomicDataWidget = () => {
             key={index}
             className={`bg-white shadow-md rounded-lg p-4 border-l-4 ${getCategoryColor(
               item.descripcion
-            )} hover:shadow-lg transition-shadow duration-300 relative`}
+            )} hover:shadow-lg transition-shadow duration-300 relative select-none`}
             onClick={() => toggleItem(index)}
             onMouseEnter={() => toggleItem(index)}
             onMouseLeave={() => setSelectedItem(null)}
           >
-            <h3 className="text-xl font-semibold mb-2 text-black">
+            <h3 className="text-xl font-semibold mb-2 text-black select-none">
               {item.descripcion}
             </h3>
             <p className="text-black font-bold text-2xl">{item.valor}</p>
             <p className="text-gray-500 pt-4">Valor al {item.fecha}</p>
             {selectedItem === index && (
-              <div className="absolute top-0 left-0 right-0 bottom-0 bg-white bg-opacity-90 flex items-center justify-center p-4">
+              <div className="absolute top-0 left-0 right-0 bottom-0 bg-white bg-opacity-90 flex items-center justify-center p-4 select-none">
                 <p className="text-gray-700 text-lg font-semibold">
                   {infoWidget(item.descripcion)}
                 </p>
