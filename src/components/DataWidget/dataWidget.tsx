@@ -140,30 +140,35 @@ export const EconomicDataWidget = () => {
           </div>
         ))}
       </div>
-      <div className="p-4 mb-4 rounded-full flex gap-3 sm:gap-12">
-        <div className="w-full">
-          <select
-            onChange={handleFilterChange}
-            className="block py-2.5 px-3 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-          >
-            <option value="all">Todos</option>
-            <option value="tasa">Tasas</option>
-            <option value="índice">Índices</option>
-            <option value="efectivo">Efectivo</option>
-            <option value="depósito">Depósito</option>
-            <option value="inflación">Inflación</option>
-          </select>
+      <div className="flex justify-between mb-4 items-center">
+        {/* Selector de filtros y toggle juntos para responsividad */}
+        <div className="flex flex-1 items-center space-x-2">
+          <div className="w-full">
+            <select
+              onChange={handleFilterChange}
+              className="block py-2.5 px-3 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+            >
+              <option value="all">Todos</option>
+              <option value="tasa">Tasas</option>
+              <option value="índice">Índices</option>
+              <option value="efectivo">Efectivo</option>
+              <option value="depósito">Depósito</option>
+              <option value="inflación">Inflación</option>
+            </select>
+          </div>
+          <div className="flex items-center space-x-2">
+            <label htmlFor="orderByDate" className="text-sm text-gray-700">
+              Ordenar por fecha:
+            </label>
+            <input
+              id="orderByDate"
+              type="checkbox"
+              checked={orderByDate}
+              onChange={(e) => setOrderByDate(e.target.checked)}
+              className="cursor-pointer"
+            />
+          </div>
         </div>
-        <div className="flex items-center space-x-2">
-      <label htmlFor="orderByDate" className="text-sm text-gray-700 hidden sm:block">Ordenar por fecha:</label>
-      <input
-        id="orderByDate"
-        type="checkbox"
-        checked={orderByDate}
-        onChange={(e) => setOrderByDate(e.target.checked)}
-        className="cursor-pointer hidden sm:block"
-      />
-    </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
         {filteredData.map((item, index) => (
