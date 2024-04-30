@@ -88,9 +88,18 @@ export const EconomicDataWidget = () => {
       return "El efectivo se refiere a la cantidad de dinero en forma de billetes y monedas que está disponible inmediatamente.";
     if (descripcion.toLowerCase().includes("deposito"))
       return "Un depósito es una suma de dinero guardada en una cuenta bancaria.";
+    if (descripcion.toLowerCase().includes("cer"))
+      return "El Coeficiente de Estabilización de Referencia (CER) tiene como objetivo reflejar la inflación minorista, y básicamente se computa a partir de la tasa de variación promedio-diario del Índice de Precios al Consumidor (IPC) correspondiente al mes previo.";
+    if (descripcion.toLowerCase().includes("TM20"))
+      return "El promedio que pagan los bancos por depósitos a plazo de $ 20 millones o más.";
     if (descripcion.toLowerCase().includes("indice"))
       return "Un índice es un indicador estadístico que refleja cambios y tendencias.";
+    if (descripcion.toLowerCase().includes("BADLAR"))
+      return "Es una Inversión de interés mixto: cuenta con una tasa fija y una tasa variable. La variable es la tasa de interés BADLAR que publica el Banco Central para depósitos a plazo fijo mayores a un millón de pesos de bancos privados.";
+    if (descripcion.toLowerCase().includes("inflacion"))
+      return "Un índice es un indicador estadístico que refleja cambios y tendenciasLa inflación es la subida generalizada de los precios de los bienes y servicios de una economía a lo largo de un periodo de tiempo.";
     return "Información no disponible.";
+    
   };
 
   if (error) {
